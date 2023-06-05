@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COMUNA">
+          <Key>
+            <PropertyRef Name="ID_COMUNA" />
+          </Key>
+          <Property Name="ID_COMUNA" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_COMUNA" Type="nvarchar2" MaxLength="50" />
+          <Property Name="REGION_ID" Type="number" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DETALLE_PEDIDO">
+          <Key>
+            <PropertyRef Name="ID_DETALLE_PEDIDO" />
+          </Key>
+          <Property Name="ID_DETALLE_PEDIDO" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CANTIDAD" Type="number" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="PRECIO_UNITARIO" Type="number" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="SUBTOTAL" Type="number" Precision="11" Scale="0" />
+          <Property Name="LIBRO_ID" Type="number" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="PEDIDO_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DIRECCION">
+          <Key>
+            <PropertyRef Name="ID_DIRECCION" />
+          </Key>
+          <Property Name="ID_DIRECCION" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DIRECCION" Type="nvarchar2" MaxLength="100" />
+          <Property Name="COMUNA_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ENVIO">
+          <Key>
+            <PropertyRef Name="ID_ENVIO" />
+          </Key>
+          <Property Name="ID_ENVIO" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA_ENVIO" Type="date" />
+          <Property Name="DIRECCION_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="PEDIDO_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="REPARTIDOR_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LIBRO">
+          <Key>
+            <PropertyRef Name="ID_LIBRO" />
+          </Key>
+          <Property Name="ID_LIBRO" Type="number" Precision="11" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_LIBRO" Type="nvarchar2" MaxLength="100" />
+          <Property Name="DESCRIPCION" Type="nclob" />
+          <Property Name="AUTOR" Type="nvarchar2" MaxLength="100" />
+          <Property Name="EDITORIAL" Type="nvarchar2" MaxLength="100" />
+          <Property Name="PRECIO_UNITARIO" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="CANTIDAD_DISPONIBLE" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="THUMBNAIL" Type="nvarchar2" MaxLength="200" />
+          <Property Name="PORTADA" Type="nvarchar2" MaxLength="300" />
+          <Property Name="FECHA_PUBLICACION" Type="date" />
+          <Property Name="CATEGORIA" Type="nvarchar2" MaxLength="200" />
+          <Property Name="ISBN" Type="nvarchar2" MaxLength="20" />
+          <Property Name="SLUG" Type="nvarchar2" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PEDIDO">
+          <Key>
+            <PropertyRef Name="ID_PEDIDO" />
+          </Key>
+          <Property Name="ID_PEDIDO" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA_PEDIDO" Type="date" />
+          <Property Name="FECHA_ENTREGA_ESTIMADA" Type="date" />
+          <Property Name="ESTADO_PEDIDO" Type="nvarchar2" MaxLength="150" />
+          <Property Name="MONTO_TOTAL" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="CLIENTE_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGION">
+          <Key>
+            <PropertyRef Name="ID_REGION" />
+          </Key>
+          <Property Name="ID_REGION" Type="number" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar2" MaxLength="50" />
+          <Property Name="NUMERO_ROMANO" Type="nvarchar2" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar2" MaxLength="128" />
+          <Property Name="LAST_LOGIN" Type="timestamp" Precision="6" />
+          <Property Name="IS_SUPERUSER" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="RUT" Type="nvarchar2" MaxLength="12" />
+          <Property Name="NOMBRE" Type="nvarchar2" MaxLength="50" />
+          <Property Name="APELLIDO" Type="nvarchar2" MaxLength="50" />
+          <Property Name="USERNAME" Type="nvarchar2" MaxLength="30" />
+          <Property Name="CORREO" Type="nvarchar2" MaxLength="254" />
+          <Property Name="TELEFONO" Type="nvarchar2" MaxLength="20" />
+          <Property Name="TIPO_USUARIO" Type="nvarchar2" MaxLength="50" />
+          <Property Name="IS_ACTIVE" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="IS_STAFF" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="DIRECCION_ID" Type="number" Precision="19" Scale="0" />
+        </EntityType>
+        <EntityType Name="USUARIO_GROUPS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USUARIO_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="GROUP_ID" Type="number" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO_USER_PERMISSIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USUARIO_ID" Type="number" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="PERMISSION_ID" Type="number" Precision="11" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="COMUNA_REGION_ID_1DD456CB_F">
+          <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
+          <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REGION">
+              <PropertyRef Name="ID_REGION" />
+            </Principal>
+            <Dependent Role="COMUNA">
+              <PropertyRef Name="REGION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_P_LIBRO_ID_478253B7_F">
+          <End Role="LIBRO" Type="Self.LIBRO" Multiplicity="1" />
+          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIBRO">
+              <PropertyRef Name="ID_LIBRO" />
+            </Principal>
+            <Dependent Role="DETALLE_PEDIDO">
+              <PropertyRef Name="LIBRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_P_PEDIDO_ID_75D4855E_F">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="DETALLE_PEDIDO">
+              <PropertyRef Name="PEDIDO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIRECCION_COMUNA_ID_C661B083_F">
+          <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMUNA">
+              <PropertyRef Name="ID_COMUNA" />
+            </Principal>
+            <Dependent Role="DIRECCION">
+              <PropertyRef Name="COMUNA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ENVIO_DIRECCION_CE3560FC_F">
+          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="1" />
+          <End Role="ENVIO" Type="Self.ENVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIRECCION">
+              <PropertyRef Name="ID_DIRECCION" />
+            </Principal>
+            <Dependent Role="ENVIO">
+              <PropertyRef Name="DIRECCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ENVIO_PEDIDO_ID_A1F90F65_F">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+          <End Role="ENVIO" Type="Self.ENVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="ENVIO">
+              <PropertyRef Name="PEDIDO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ENVIO_REPARTIDO_3940B68F_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="ENVIO" Type="Self.ENVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENVIO">
+              <PropertyRef Name="REPARTIDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PEDIDO_CLIENTE_I_E6353BB4_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="CLIENTE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_DIRECCION_4D2CC5E4_F">
+          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIRECCION">
+              <PropertyRef Name="ID_DIRECCION" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="DIRECCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_G_USUARIO_I_161FC80C_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO_GROUPS" Type="Self.USUARIO_GROUPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USUARIO_GROUPS">
+              <PropertyRef Name="USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_U_USUARIO_I_693D9C50_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO_USER_PERMISSIONS" Type="Self.USUARIO_USER_PERMISSIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USUARIO_USER_PERMISSIONS">
+              <PropertyRef Name="USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="ENVIO" EntityType="Self.ENVIO" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="LIBRO" EntityType="Self.LIBRO" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="REGION" EntityType="Self.REGION" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="USUARIO_GROUPS" EntityType="Self.USUARIO_GROUPS" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <EntitySet Name="USUARIO_USER_PERMISSIONS" EntityType="Self.USUARIO_USER_PERMISSIONS" Schema="LIBRERIA_IMAGINA" store:Type="Tables" />
+          <AssociationSet Name="COMUNA_REGION_ID_1DD456CB_F" Association="Self.COMUNA_REGION_ID_1DD456CB_F">
+            <End Role="REGION" EntitySet="REGION" />
+            <End Role="COMUNA" EntitySet="COMUNA" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_P_LIBRO_ID_478253B7_F" Association="Self.DETALLE_P_LIBRO_ID_478253B7_F">
+            <End Role="LIBRO" EntitySet="LIBRO" />
+            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_P_PEDIDO_ID_75D4855E_F" Association="Self.DETALLE_P_PEDIDO_ID_75D4855E_F">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="DIRECCION_COMUNA_ID_C661B083_F" Association="Self.DIRECCION_COMUNA_ID_C661B083_F">
+            <End Role="COMUNA" EntitySet="COMUNA" />
+            <End Role="DIRECCION" EntitySet="DIRECCION" />
+          </AssociationSet>
+          <AssociationSet Name="ENVIO_DIRECCION_CE3560FC_F" Association="Self.ENVIO_DIRECCION_CE3560FC_F">
+            <End Role="DIRECCION" EntitySet="DIRECCION" />
+            <End Role="ENVIO" EntitySet="ENVIO" />
+          </AssociationSet>
+          <AssociationSet Name="ENVIO_PEDIDO_ID_A1F90F65_F" Association="Self.ENVIO_PEDIDO_ID_A1F90F65_F">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="ENVIO" EntitySet="ENVIO" />
+          </AssociationSet>
+          <AssociationSet Name="ENVIO_REPARTIDO_3940B68F_F" Association="Self.ENVIO_REPARTIDO_3940B68F_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="ENVIO" EntitySet="ENVIO" />
+          </AssociationSet>
+          <AssociationSet Name="PEDIDO_CLIENTE_I_E6353BB4_F" Association="Self.PEDIDO_CLIENTE_I_E6353BB4_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_DIRECCION_4D2CC5E4_F" Association="Self.USUARIO_DIRECCION_4D2CC5E4_F">
+            <End Role="DIRECCION" EntitySet="DIRECCION" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_G_USUARIO_I_161FC80C_F" Association="Self.USUARIO_G_USUARIO_I_161FC80C_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO_GROUPS" EntitySet="USUARIO_GROUPS" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_U_USUARIO_I_693D9C50_F" Association="Self.USUARIO_U_USUARIO_I_693D9C50_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO_USER_PERMISSIONS" EntitySet="USUARIO_USER_PERMISSIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COMUNA">
+          <Key>
+            <PropertyRef Name="ID_COMUNA" />
+          </Key>
+          <Property Name="ID_COMUNA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_COMUNA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="REGION_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="REGION" Relationship="Self.COMUNA_REGION_ID_1DD456CB_F" FromRole="COMUNA" ToRole="REGION" />
+          <NavigationProperty Name="DIRECCION" Relationship="Self.DIRECCION_COMUNA_ID_C661B083_F" FromRole="COMUNA" ToRole="DIRECCION" />
+        </EntityType>
+        <EntityType Name="DETALLE_PEDIDO">
+          <Key>
+            <PropertyRef Name="ID_DETALLE_PEDIDO" />
+          </Key>
+          <Property Name="ID_DETALLE_PEDIDO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CANTIDAD" Type="Int64" Nullable="false" />
+          <Property Name="PRECIO_UNITARIO" Type="Int64" Nullable="false" />
+          <Property Name="SUBTOTAL" Type="Int64" />
+          <Property Name="LIBRO_ID" Type="Int64" Nullable="false" />
+          <Property Name="PEDIDO_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="LIBRO" Relationship="Self.DETALLE_P_LIBRO_ID_478253B7_F" FromRole="DETALLE_PEDIDO" ToRole="LIBRO" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.DETALLE_P_PEDIDO_ID_75D4855E_F" FromRole="DETALLE_PEDIDO" ToRole="PEDIDO" />
+        </EntityType>
+        <EntityType Name="DIRECCION">
+          <Key>
+            <PropertyRef Name="ID_DIRECCION" />
+          </Key>
+          <Property Name="ID_DIRECCION" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DIRECCION1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COMUNA_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="COMUNA" Relationship="Self.DIRECCION_COMUNA_ID_C661B083_F" FromRole="DIRECCION" ToRole="COMUNA" />
+          <NavigationProperty Name="ENVIO" Relationship="Self.ENVIO_DIRECCION_CE3560FC_F" FromRole="DIRECCION" ToRole="ENVIO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_DIRECCION_4D2CC5E4_F" FromRole="DIRECCION" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="ENVIO">
+          <Key>
+            <PropertyRef Name="ID_ENVIO" />
+          </Key>
+          <Property Name="ID_ENVIO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA_ENVIO" Type="DateTime" />
+          <Property Name="DIRECCION_ID" Type="Int64" Nullable="false" />
+          <Property Name="PEDIDO_ID" Type="Int64" Nullable="false" />
+          <Property Name="REPARTIDOR_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DIRECCION" Relationship="Self.ENVIO_DIRECCION_CE3560FC_F" FromRole="ENVIO" ToRole="DIRECCION" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.ENVIO_PEDIDO_ID_A1F90F65_F" FromRole="ENVIO" ToRole="PEDIDO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.ENVIO_REPARTIDO_3940B68F_F" FromRole="ENVIO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="LIBRO">
+          <Key>
+            <PropertyRef Name="ID_LIBRO" />
+          </Key>
+          <Property Name="ID_LIBRO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_LIBRO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AUTOR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EDITORIAL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PRECIO_UNITARIO" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="CANTIDAD_DISPONIBLE" Type="Int64" Nullable="false" />
+          <Property Name="THUMBNAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PORTADA" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FECHA_PUBLICACION" Type="DateTime" />
+          <Property Name="CATEGORIA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SLUG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.DETALLE_P_LIBRO_ID_478253B7_F" FromRole="LIBRO" ToRole="DETALLE_PEDIDO" />
+        </EntityType>
+        <EntityType Name="PEDIDO">
+          <Key>
+            <PropertyRef Name="ID_PEDIDO" />
+          </Key>
+          <Property Name="ID_PEDIDO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA_PEDIDO" Type="DateTime" />
+          <Property Name="FECHA_ENTREGA_ESTIMADA" Type="DateTime" />
+          <Property Name="ESTADO_PEDIDO" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MONTO_TOTAL" Type="Int64" Nullable="false" />
+          <Property Name="CLIENTE_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.DETALLE_P_PEDIDO_ID_75D4855E_F" FromRole="PEDIDO" ToRole="DETALLE_PEDIDO" />
+          <NavigationProperty Name="ENVIO" Relationship="Self.ENVIO_PEDIDO_ID_A1F90F65_F" FromRole="PEDIDO" ToRole="ENVIO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.PEDIDO_CLIENTE_I_E6353BB4_F" FromRole="PEDIDO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="REGION">
+          <Key>
+            <PropertyRef Name="ID_REGION" />
+          </Key>
+          <Property Name="ID_REGION" Type="Int64" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NUMERO_ROMANO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMUNA" Relationship="Self.COMUNA_REGION_ID_1DD456CB_F" FromRole="REGION" ToRole="COMUNA" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PASSWORD" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LAST_LOGIN" Type="DateTime" Precision="6" />
+          <Property Name="IS_SUPERUSER" Type="Boolean" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="USERNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CORREO" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_STAFF" Type="Boolean" Nullable="false" />
+          <Property Name="DIRECCION_ID" Type="Int64" />
+          <NavigationProperty Name="DIRECCION" Relationship="Self.USUARIO_DIRECCION_4D2CC5E4_F" FromRole="USUARIO" ToRole="DIRECCION" />
+          <NavigationProperty Name="ENVIO" Relationship="Self.ENVIO_REPARTIDO_3940B68F_F" FromRole="USUARIO" ToRole="ENVIO" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.PEDIDO_CLIENTE_I_E6353BB4_F" FromRole="USUARIO" ToRole="PEDIDO" />
+          <NavigationProperty Name="USUARIO_GROUPS" Relationship="Self.USUARIO_G_USUARIO_I_161FC80C_F" FromRole="USUARIO" ToRole="USUARIO_GROUPS" />
+          <NavigationProperty Name="USUARIO_USER_PERMISSIONS" Relationship="Self.USUARIO_U_USUARIO_I_693D9C50_F" FromRole="USUARIO" ToRole="USUARIO_USER_PERMISSIONS" />
+        </EntityType>
+        <EntityType Name="USUARIO_GROUPS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USUARIO_ID" Type="Int64" Nullable="false" />
+          <Property Name="GROUP_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_G_USUARIO_I_161FC80C_F" FromRole="USUARIO_GROUPS" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO_USER_PERMISSIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USUARIO_ID" Type="Int64" Nullable="false" />
+          <Property Name="PERMISSION_ID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_U_USUARIO_I_693D9C50_F" FromRole="USUARIO_USER_PERMISSIONS" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="COMUNA_REGION_ID_1DD456CB_F">
+          <End Role="REGION" Type="Self.REGION" Multiplicity="1" />
+          <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REGION">
+              <PropertyRef Name="ID_REGION" />
+            </Principal>
+            <Dependent Role="COMUNA">
+              <PropertyRef Name="REGION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DIRECCION_COMUNA_ID_C661B083_F">
+          <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMUNA">
+              <PropertyRef Name="ID_COMUNA" />
+            </Principal>
+            <Dependent Role="DIRECCION">
+              <PropertyRef Name="COMUNA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_P_LIBRO_ID_478253B7_F">
+          <End Role="LIBRO" Type="Self.LIBRO" Multiplicity="1" />
+          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LIBRO">
+              <PropertyRef Name="ID_LIBRO" />
+            </Principal>
+            <Dependent Role="DETALLE_PEDIDO">
+              <PropertyRef Name="LIBRO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DETALLE_P_PEDIDO_ID_75D4855E_F">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+          <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="DETALLE_PEDIDO">
+              <PropertyRef Name="PEDIDO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ENVIO_DIRECCION_CE3560FC_F">
+          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="1" />
+          <End Role="ENVIO" Type="Self.ENVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIRECCION">
+              <PropertyRef Name="ID_DIRECCION" />
+            </Principal>
+            <Dependent Role="ENVIO">
+              <PropertyRef Name="DIRECCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_DIRECCION_4D2CC5E4_F">
+          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIRECCION">
+              <PropertyRef Name="ID_DIRECCION" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="DIRECCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ENVIO_PEDIDO_ID_A1F90F65_F">
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+          <End Role="ENVIO" Type="Self.ENVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDO">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Principal>
+            <Dependent Role="ENVIO">
+              <PropertyRef Name="PEDIDO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ENVIO_REPARTIDO_3940B68F_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="ENVIO" Type="Self.ENVIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ENVIO">
+              <PropertyRef Name="REPARTIDOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PEDIDO_CLIENTE_I_E6353BB4_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="CLIENTE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_G_USUARIO_I_161FC80C_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO_GROUPS" Type="Self.USUARIO_GROUPS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USUARIO_GROUPS">
+              <PropertyRef Name="USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USUARIO_U_USUARIO_I_693D9C50_F">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO_USER_PERMISSIONS" Type="Self.USUARIO_USER_PERMISSIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USUARIO_USER_PERMISSIONS">
+              <PropertyRef Name="USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COMUNA" EntityType="Self.COMUNA" />
+          <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" />
+          <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" />
+          <EntitySet Name="ENVIO" EntityType="Self.ENVIO" />
+          <EntitySet Name="LIBRO" EntityType="Self.LIBRO" />
+          <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" />
+          <EntitySet Name="REGION" EntityType="Self.REGION" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <EntitySet Name="USUARIO_GROUPS" EntityType="Self.USUARIO_GROUPS" />
+          <EntitySet Name="USUARIO_USER_PERMISSIONS" EntityType="Self.USUARIO_USER_PERMISSIONS" />
+          <AssociationSet Name="COMUNA_REGION_ID_1DD456CB_F" Association="Self.COMUNA_REGION_ID_1DD456CB_F">
+            <End Role="REGION" EntitySet="REGION" />
+            <End Role="COMUNA" EntitySet="COMUNA" />
+          </AssociationSet>
+          <AssociationSet Name="DIRECCION_COMUNA_ID_C661B083_F" Association="Self.DIRECCION_COMUNA_ID_C661B083_F">
+            <End Role="COMUNA" EntitySet="COMUNA" />
+            <End Role="DIRECCION" EntitySet="DIRECCION" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_P_LIBRO_ID_478253B7_F" Association="Self.DETALLE_P_LIBRO_ID_478253B7_F">
+            <End Role="LIBRO" EntitySet="LIBRO" />
+            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="DETALLE_P_PEDIDO_ID_75D4855E_F" Association="Self.DETALLE_P_PEDIDO_ID_75D4855E_F">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="ENVIO_DIRECCION_CE3560FC_F" Association="Self.ENVIO_DIRECCION_CE3560FC_F">
+            <End Role="DIRECCION" EntitySet="DIRECCION" />
+            <End Role="ENVIO" EntitySet="ENVIO" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_DIRECCION_4D2CC5E4_F" Association="Self.USUARIO_DIRECCION_4D2CC5E4_F">
+            <End Role="DIRECCION" EntitySet="DIRECCION" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="ENVIO_PEDIDO_ID_A1F90F65_F" Association="Self.ENVIO_PEDIDO_ID_A1F90F65_F">
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+            <End Role="ENVIO" EntitySet="ENVIO" />
+          </AssociationSet>
+          <AssociationSet Name="ENVIO_REPARTIDO_3940B68F_F" Association="Self.ENVIO_REPARTIDO_3940B68F_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="ENVIO" EntitySet="ENVIO" />
+          </AssociationSet>
+          <AssociationSet Name="PEDIDO_CLIENTE_I_E6353BB4_F" Association="Self.PEDIDO_CLIENTE_I_E6353BB4_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_G_USUARIO_I_161FC80C_F" Association="Self.USUARIO_G_USUARIO_I_161FC80C_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO_GROUPS" EntitySet="USUARIO_GROUPS" />
+          </AssociationSet>
+          <AssociationSet Name="USUARIO_U_USUARIO_I_693D9C50_F" Association="Self.USUARIO_U_USUARIO_I_693D9C50_F">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="USUARIO_USER_PERMISSIONS" EntitySet="USUARIO_USER_PERMISSIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="COMUNA">
+            <EntityTypeMapping TypeName="Model.COMUNA">
+              <MappingFragment StoreEntitySet="COMUNA">
+                <ScalarProperty Name="ID_COMUNA" ColumnName="ID_COMUNA" />
+                <ScalarProperty Name="NOMBRE_COMUNA" ColumnName="NOMBRE_COMUNA" />
+                <ScalarProperty Name="REGION_ID" ColumnName="REGION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLE_PEDIDO">
+            <EntityTypeMapping TypeName="Model.DETALLE_PEDIDO">
+              <MappingFragment StoreEntitySet="DETALLE_PEDIDO">
+                <ScalarProperty Name="ID_DETALLE_PEDIDO" ColumnName="ID_DETALLE_PEDIDO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
+                <ScalarProperty Name="SUBTOTAL" ColumnName="SUBTOTAL" />
+                <ScalarProperty Name="LIBRO_ID" ColumnName="LIBRO_ID" />
+                <ScalarProperty Name="PEDIDO_ID" ColumnName="PEDIDO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIRECCION">
+            <EntityTypeMapping TypeName="Model.DIRECCION">
+              <MappingFragment StoreEntitySet="DIRECCION">
+                <ScalarProperty Name="ID_DIRECCION" ColumnName="ID_DIRECCION" />
+                <ScalarProperty Name="DIRECCION1" ColumnName="DIRECCION" />
+                <ScalarProperty Name="COMUNA_ID" ColumnName="COMUNA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ENVIO">
+            <EntityTypeMapping TypeName="Model.ENVIO">
+              <MappingFragment StoreEntitySet="ENVIO">
+                <ScalarProperty Name="ID_ENVIO" ColumnName="ID_ENVIO" />
+                <ScalarProperty Name="FECHA_ENVIO" ColumnName="FECHA_ENVIO" />
+                <ScalarProperty Name="DIRECCION_ID" ColumnName="DIRECCION_ID" />
+                <ScalarProperty Name="PEDIDO_ID" ColumnName="PEDIDO_ID" />
+                <ScalarProperty Name="REPARTIDOR_ID" ColumnName="REPARTIDOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIBRO">
+            <EntityTypeMapping TypeName="Model.LIBRO">
+              <MappingFragment StoreEntitySet="LIBRO">
+                <ScalarProperty Name="ID_LIBRO" ColumnName="ID_LIBRO" />
+                <ScalarProperty Name="NOMBRE_LIBRO" ColumnName="NOMBRE_LIBRO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="AUTOR" ColumnName="AUTOR" />
+                <ScalarProperty Name="EDITORIAL" ColumnName="EDITORIAL" />
+                <ScalarProperty Name="PRECIO_UNITARIO" ColumnName="PRECIO_UNITARIO" />
+                <ScalarProperty Name="CANTIDAD_DISPONIBLE" ColumnName="CANTIDAD_DISPONIBLE" />
+                <ScalarProperty Name="THUMBNAIL" ColumnName="THUMBNAIL" />
+                <ScalarProperty Name="PORTADA" ColumnName="PORTADA" />
+                <ScalarProperty Name="FECHA_PUBLICACION" ColumnName="FECHA_PUBLICACION" />
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="SLUG" ColumnName="SLUG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDO">
+            <EntityTypeMapping TypeName="Model.PEDIDO">
+              <MappingFragment StoreEntitySet="PEDIDO">
+                <ScalarProperty Name="ID_PEDIDO" ColumnName="ID_PEDIDO" />
+                <ScalarProperty Name="FECHA_PEDIDO" ColumnName="FECHA_PEDIDO" />
+                <ScalarProperty Name="FECHA_ENTREGA_ESTIMADA" ColumnName="FECHA_ENTREGA_ESTIMADA" />
+                <ScalarProperty Name="ESTADO_PEDIDO" ColumnName="ESTADO_PEDIDO" />
+                <ScalarProperty Name="MONTO_TOTAL" ColumnName="MONTO_TOTAL" />
+                <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGION">
+            <EntityTypeMapping TypeName="Model.REGION">
+              <MappingFragment StoreEntitySet="REGION">
+                <ScalarProperty Name="ID_REGION" ColumnName="ID_REGION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="NUMERO_ROMANO" ColumnName="NUMERO_ROMANO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="Model.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="LAST_LOGIN" ColumnName="LAST_LOGIN" />
+                <ScalarProperty Name="IS_SUPERUSER" ColumnName="IS_SUPERUSER" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_STAFF" ColumnName="IS_STAFF" />
+                <ScalarProperty Name="DIRECCION_ID" ColumnName="DIRECCION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_GROUPS">
+            <EntityTypeMapping TypeName="Model.USUARIO_GROUPS">
+              <MappingFragment StoreEntitySet="USUARIO_GROUPS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_USER_PERMISSIONS">
+            <EntityTypeMapping TypeName="Model.USUARIO_USER_PERMISSIONS">
+              <MappingFragment StoreEntitySet="USUARIO_USER_PERMISSIONS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+                <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

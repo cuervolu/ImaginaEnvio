@@ -1,0 +1,119 @@
+﻿# Visual Studio files
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# NuGet packages
+packages/
+
+# Visual Studio cache files
+.vscode/
+*.suo
+*.user
+*.ncb
+*.cache
+*.opendb
+*.sdf
+*.dbmdl
+*.VC.db
+*.VC.VC.opendb
+
+# Resharper files
+_ReSharper*/
+*.resharper
+[Tt]humbs.db
+
+# Test files
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Build output
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+
+# Resharper files
+_ReSharper*/
+*.resharper
+[Tt]humbs.db
+
+# Test files
+[Tt]est[Rr]esult*/
+
+# CMake
+[Cc]MakeCache.txt
+[Cc]MakeFiles/
+[Cc]MakeScripts/
+[Cc]Test[Cc]ache.xml
+
+# CodeRush
+.cr/
+~*/
+
+# TeamCity
+_TeamCity*
+
+# DotCover
+*.dotCover
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject cache
+[Dd]oc[Ss]tate.xml
+[Dd]oc[Ss]tate.[Bb]in
+
+# Click-Once manifests
+_*.publish.xml
+
+# Publish profile files
+*.pubxml
+
+# MSBuild binary and logs
+[Bb]uild[Ll]og.*.txt
+*.[Pp]ublish.xml
+*.deployproj
+*.msbuildproj

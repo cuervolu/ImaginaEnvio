@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce2fa96d0ca24a469f0307f20fb5e590" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="Model.COMUNA" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DETALLE_PEDIDO" Width="1.5" PointX="12" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DIRECCION" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ENVIO" Width="1.5" PointX="12" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LIBRO" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PEDIDO" Width="1.5" PointX="9.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.REGION" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIO_GROUPS" Width="1.5" PointX="9.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIO_USER_PERMISSIONS" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="Model.COMUNA_REGION_ID_1DD456CB_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DIRECCION_COMUNA_ID_C661B083_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DETALLE_P_LIBRO_ID_478253B7_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.DETALLE_P_PEDIDO_ID_75D4855E_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENVIO_DIRECCION_CE3560FC_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIO_DIRECCION_4D2CC5E4_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENVIO_PEDIDO_ID_A1F90F65_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ENVIO_REPARTIDO_3940B68F_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.PEDIDO_CLIENTE_I_E6353BB4_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIO_G_USUARIO_I_161FC80C_F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.USUARIO_U_USUARIO_I_693D9C50_F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
